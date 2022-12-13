@@ -1,0 +1,10 @@
+{
+	"quiet": true,
+	"watch": ["source"],
+	"ext": ".ts,.js",
+	"ignore": [],
+	"events": {
+		"start": "clear"
+	},
+	"exec": "tsx source/index.ts"
+}

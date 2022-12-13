@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+    provider = "cockroachdb"
+    url      = env("DATABASE_URI")
+}
+
+generator client {
+    provider        = "prisma-client-js"
+    previewFeatures = ["referentialIntegrity"]
+}
+
+model User {
+    id          String    @id @default(cuid())
+    firstName   String?
+    lastName    String?
+    username    String    @unique
+    email       String?   @unique
+    dateOfBirth DateTime?
+    weight      Int?
+    height      Int?
+    password    String
+}
+
+model File {
+    id       String  @id @default(cuid())
+    filename String  @unique
+    mime     String
+    size     Int
+    width    Int?
+    height   Int?
+    duration String?
+    ipfs     String?
+}
