@@ -1,9 +1,11 @@
 import cuid from "cuid";
 
-export class Entity {
+export class Entity<Properties> {
   id: string;
+  properties: Properties;
 
-  constructor(id?: string) {
+  constructor(properties: Properties, id?: string) {
+    this.properties = properties;
     this.id = id || cuid();
   }
 }
