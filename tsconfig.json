@@ -1,6 +1,4 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "display": "core",
   "compilerOptions": {
     "allowUnreachableCode": true,
     "allowUnusedLabels": true,
@@ -22,6 +20,14 @@
     "noUnusedParameters": true,
     "preserveWatchOutput": true,
     "skipLibCheck": true,
-    "strict": false
-  }
+    "strict": false,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": ["ESNext", "ScriptHost", "DOM"],
+    "module": "NodeNext",
+    "moduleResolution": "node",
+    "target": "ESNext"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
