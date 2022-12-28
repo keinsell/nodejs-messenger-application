@@ -1,5 +1,5 @@
 import { Entity } from "../_common/entity.js";
-import { Password } from "./password.vo.js";
+import { Password } from "./value-objects/password.vo.js";
 
 interface UserProperties {
   username: string;

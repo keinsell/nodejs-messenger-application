@@ -1,9 +1,11 @@
 import { User } from "./entity.js";
+import { Service } from "diod";
 
 export const USER_STORE: User[] = [];
 
+@Service()
 export class UserRepository {
-  static save(user: User) {
+  save(user: User) {
     // Check if user exists, if so update
     const existingUser = USER_STORE.find((u) => u.id === user.id);
 
@@ -24,6 +26,11 @@ export class UserRepository {
       throw new Error("User not found");
     }
 
+    return user;
+  }
+
+  findByUsername(username: string) {
+    const user = USER_STORE.find((u) => u.username === username);
     return user;
   }
 }
