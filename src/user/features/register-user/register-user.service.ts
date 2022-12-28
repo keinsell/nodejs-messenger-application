@@ -7,6 +7,8 @@ import { Password } from "../../value-objects/password.vo.js";
 import { Hasher } from "../../../_common/security/hasher/adapter.js";
 import { Logger } from "../../../_common/logger/adapter.js";
 import { RegisterUserCommand } from "./register-user.command.js";
+import { EndToEndEncryption } from "../../../_common/security/E2EE/adapter.js";
+import { UserAlreadyExists } from "../../errors/user-already-exists.error.js";
 
 @Service()
 export class RegisterUserService
@@ -15,21 +17,19 @@ export class RegisterUserService
   constructor(
     private readonly userRepository: UserRepository,
     private readonly hasher: Hasher,
-    private readonly logger: Logger
+    private readonly logger: Logger,
+    private readonly encryption: EndToEndEncryption
   ) {}
 
   async execute(request: RegisterUserCommand): Promise<RegisterUserResponse> {
-    this.logger.log(
-      `Recived request to register user (${request.id})`,
-      request
-    );
+    this.logger.debug(request);
 
     const isUserInDatabase = this.userRepository.findByUsername(
       request.username
     );
 
     if (isUserInDatabase) {
-      throw new Error("User already exists");
+      throw new UserAlreadyExists(request.username);
     }
 
     const user = this.userRepository.save(

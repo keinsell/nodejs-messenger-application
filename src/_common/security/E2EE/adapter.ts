@@ -1,1 +1,1 @@
-export abstract class EndToEndEncryption {}
+export class EndToEndEncryption {}

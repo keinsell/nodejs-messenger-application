@@ -9,12 +9,14 @@ import { RegisterUserService } from "../user/features/register-user/register-use
 import { GetThreadService } from "../thread/features/get-thread/get-thread.service.js";
 import { Logger } from "../_common/logger/adapter.js";
 import { ConsoleLogger } from "../_common/logger/console.logger.js";
+import { EndToEndEncryption } from "../_common/security/E2EE/adapter.js";
 
 const builder = new ContainerBuilder();
 
 // Common Services
 builder.register(Hasher).use(Argon2Hasher);
 builder.register(Logger).use(ConsoleLogger);
+builder.registerAndUse(EndToEndEncryption);
 
 // Repositories
 builder.registerAndUse(UserRepository);

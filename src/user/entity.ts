@@ -8,6 +8,7 @@ interface UserProperties {
   username: string;
   password: Password;
   birthdate?: Date;
+  // publicKey: string;
 }
 
 export class User extends Entity<UserProperties> {

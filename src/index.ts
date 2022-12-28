@@ -7,23 +7,36 @@ import { RegisterUserCommand } from "./user/features/register-user/register-user
 import { GetThreadCommand } from "./thread/features/get-thread/get-thread.command.js";
 import { SendMessageService } from "./message/features/send-message/send-message.service.js";
 import { SendMessageCommand } from "./message/features/send-message/send-message.command.js";
+import cuid from "cuid";
 
-const user = await container
-  .get(RegisterUserService)
-  .execute(
-    new RegisterUserCommand({ username: "keinsell", password: "keinsell" })
-  );
+const domonstrationExecutionCorreation = cuid();
+
+const user = await container.get(RegisterUserService).execute(
+  new RegisterUserCommand({
+    username: "keinsell",
+    password: "keinsell",
+    correlationId: domonstrationExecutionCorreation,
+  })
+);
 
 const user2 = await container
   .get(RegisterUserService)
   .execute(
-    new RegisterUserCommand({ username: "keinsell2", password: "keinsell2" })
+    new RegisterUserCommand({
+      username: "keinsell2",
+      password: "keinsell2",
+      correlationId: domonstrationExecutionCorreation,
+    })
   );
 
 const thread = await container
   .get(GetThreadService)
   .execute(
-    new GetThreadCommand({ userIds: [user.id, user2.id], userId: user.id })
+    new GetThreadCommand({
+      userIds: [user.id, user2.id],
+      userId: user.id,
+      correlationId: domonstrationExecutionCorreation,
+    })
   );
 
 const message = await container.get(SendMessageService).execute(
@@ -31,9 +44,16 @@ const message = await container.get(SendMessageService).execute(
     message: "Hello World!",
     threadId: thread.id,
     userId: user.id,
+    correlationId: domonstrationExecutionCorreation,
   })
 );
 
 const x = await container
   .get(GetThreadService)
-  .execute(new GetThreadCommand({ threadId: thread.id, userId: user.id }));
+  .execute(
+    new GetThreadCommand({
+      threadId: thread.id,
+      userId: user.id,
+      correlationId: domonstrationExecutionCorreation,
+    })
+  );

@@ -6,6 +6,9 @@ import { CommandHandler } from "../../../_common/usecase.js";
 import { SendMessageCommand } from "./send-message.command.js";
 import { Message } from "../../entity.js";
 import { ThreadRepository } from "../../../thread/repository.js";
+import { UserIsNotMemberOfThreadError } from "../../../thread/errors/user-is-not-member-of-thread.error.js";
+import { ThreadNotFoundError } from "../../../thread/errors/thread-not-found.error.js";
+import { UserNotFoundError } from "../../../user/errors/user-not-found.error.js";
 
 @Service()
 export class SendMessageService
@@ -22,14 +25,14 @@ export class SendMessageService
     const thread = await this.threadRepository.findById(request.threadId);
     const user = await this.userRepository.findById(request.userId);
 
-    this.logger.log("Recived command:", request);
+    this.logger.debug(request);
 
     if (!thread) {
-      throw new Error(`Thread with id ${request.threadId} does not exist`);
+      throw new ThreadNotFoundError(request.threadId);
     }
 
     if (!user) {
-      throw new Error(`User with id ${request.userId} does not exist`);
+      throw new UserNotFoundError(request.userId);
     }
 
     // Check if user is member of thread
@@ -38,9 +41,7 @@ export class SendMessageService
     );
 
     if (!isUserMemberOfThread) {
-      throw new Error(
-        `User with id ${request.userId} is not a member of thread with id ${request.threadId}`
-      );
+      throw new UserIsNotMemberOfThreadError(user, thread);
     }
 
     const message = new Message({

@@ -6,6 +6,9 @@ import { Thread } from "../../entity.js";
 import { ThreadRepository } from "../../repository.js";
 import { Service } from "diod";
 import { GetThreadCommand } from "./get-thread.command.js";
+import { UserNotFoundError } from "../../../user/errors/user-not-found.error.js";
+import { UserIsNotMemberOfThreadError } from "../../errors/user-is-not-member-of-thread.error.js";
+import { ThreadNotFoundError } from "../../errors/thread-not-found.error.js";
 
 @Service()
 export class GetThreadService
@@ -17,26 +20,30 @@ export class GetThreadService
     private readonly logger: Logger
   ) {}
   async execute(request: GetThreadCommand): Promise<Thread> {
-    this.logger.log("Recived command:", request);
+    this.logger.debug(request);
+
+    const user = await this.userRepository.findById(request.userId);
+
+    if (!user) {
+      throw new UserNotFoundError(request.userId);
+    }
 
     // If threadId is provided, return thread
     if (request.threadId) {
       const thread = await this.threadRepository.findById(request.threadId);
+      const user = await this.userRepository.findById(request.userId);
 
       if (!thread) {
-        throw new Error(`Thread with id ${request.threadId} does not exist`);
+        throw new ThreadNotFoundError(request.threadId);
       }
 
       // Check if user is member of thread
-
       const isUserMemberOfThread = thread.members.find(
-        (member) => member.id === request.userId
+        (member) => member.id === user.id
       );
 
       if (!isUserMemberOfThread) {
-        throw new Error(
-          `User with id ${request.userId} is not a member of thread with id ${request.threadId}`
-        );
+        throw new UserIsNotMemberOfThreadError(user, thread);
       }
 
       this.logger.log(`Found thread:`, thread);
@@ -45,14 +52,13 @@ export class GetThreadService
     }
 
     // Otherwise, find thread by members
-
     const users: User[] = [];
 
     for await (const userId of request.userIds) {
       const user = await this.userRepository.findById(userId);
 
       if (!user) {
-        throw new Error(`User with id ${userId} does not exist`);
+        throw new UserNotFoundError(userId);
       }
 
       users.push(user);
