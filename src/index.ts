@@ -22,7 +22,9 @@ const user2 = await container
 
 const thread = await container
   .get(GetThreadService)
-  .execute(new GetThreadCommand({ userIds: [user.id, user2.id] }));
+  .execute(
+    new GetThreadCommand({ userIds: [user.id, user2.id], userId: user.id })
+  );
 
 const message = await container.get(SendMessageService).execute(
   new SendMessageCommand({
@@ -32,4 +34,6 @@ const message = await container.get(SendMessageService).execute(
   })
 );
 
-console.log(message);
+const x = await container
+  .get(GetThreadService)
+  .execute(new GetThreadCommand({ threadId: thread.id, userId: user.id }));
