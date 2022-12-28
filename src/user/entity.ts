@@ -5,6 +5,7 @@ interface UserProperties {
   firstName?: string;
   lastName?: string;
   email?: string;
+  phoneNumber?: string;
   username: string;
   password: Password;
   birthdate?: Date;
