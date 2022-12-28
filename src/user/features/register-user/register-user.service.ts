@@ -6,6 +6,7 @@ import { UserRepository } from "../../repository.js";
 import { User } from "../../entity.js";
 import { Password } from "../../value-objects/password.vo.js";
 import { Hasher } from "../../../_common/security/hasher/adapter.js";
+import { Logger } from "../../../_common/logger/adapter.js";
 
 @Service()
 export class RegisterUserService
@@ -13,7 +14,8 @@ export class RegisterUserService
 {
   constructor(
     private readonly userRepository: UserRepository,
-    private readonly hasher: Hasher
+    private readonly hasher: Hasher,
+    private readonly logger: Logger
   ) {}
 
   async execute(request: RegisterUserRequest): Promise<RegisterUserResponse> {
@@ -35,7 +37,7 @@ export class RegisterUserService
       })
     );
 
-    console.log(`Created user ${user.username} with id ${user.id}`);
+    this.logger.log(`Created user ${user.username} (${user.id})`);
 
     return {
       id: user.id,

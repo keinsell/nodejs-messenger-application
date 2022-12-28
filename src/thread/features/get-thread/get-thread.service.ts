@@ -1,3 +1,4 @@
+import { Logger } from "../../../_common/logger/adapter.js";
 import { Usecase } from "../../../_common/usecase.js";
 import { User } from "../../../user/entity.js";
 import { UserRepository } from "../../../user/repository.js";
@@ -13,7 +14,8 @@ export class GetThreadService
 {
   constructor(
     private readonly threadRepository: ThreadRepository,
-    private readonly userRepository: UserRepository
+    private readonly userRepository: UserRepository,
+    private readonly logger: Logger
   ) {}
   async execute(request: GetThreadRequest): Promise<GetThreadResponse> {
     const users: User[] = [];
@@ -35,14 +37,14 @@ export class GetThreadService
       const newThread = new Thread({ members: users });
       const savedThread = await this.threadRepository.save(newThread);
 
-      console.log(`Created thread ${savedThread.id}`);
+      this.logger.log(`Created thread ${savedThread.id}`);
 
       return {
         id: savedThread.id,
       };
     }
 
-    console.log(`Found thread ${thread.id} with members ${thread.members}`);
+    this.logger.log(`Found thread ${thread.id}`);
 
     return {
       id: thread.id,
