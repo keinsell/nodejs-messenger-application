@@ -1,5 +1,7 @@
+import { User } from "../../../user/entity.js";
+
 export interface SendMessageRequest {
   receiverId: string;
-  senderId: string;
+  user: User;
   message: string;
 }
