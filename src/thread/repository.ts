@@ -1,3 +1,4 @@
+import { MessageRepository } from "../message/repository.js";
 import { User } from "../user/entity.js";
 import { Thread } from "./entity.js";
 import { Service } from "diod";
@@ -6,6 +7,8 @@ export const THREAD_STORE: Thread[] = [];
 
 @Service()
 export class ThreadRepository {
+  constructor(private readonly messageRepository: MessageRepository) {}
+
   save(thread: Thread) {
     // Check if thread exists, if so update
     const existingThread = THREAD_STORE.find((t) => t.id === thread.id);
@@ -29,7 +32,13 @@ export class ThreadRepository {
       return memberIds.every((id) => threadMemberIds.includes(id));
     });
 
-    return thread;
+    if (!thread) {
+      return null;
+    }
+
+    const messagesOfThread = this.messageRepository.findByThread(thread);
+
+    return new Thread({ members, messages: messagesOfThread }, thread.id);
   }
 
   /** Find all threads where provided User is a member. */
@@ -44,6 +53,12 @@ export class ThreadRepository {
 
   async findById(threadId: string) {
     const thread = THREAD_STORE.find((t) => t.id === threadId);
-    return thread;
+
+    const messagesOfThread = this.messageRepository.findByThread(thread);
+
+    return new Thread(
+      { members: thread.members, messages: messagesOfThread },
+      thread.id
+    );
   }
 }
