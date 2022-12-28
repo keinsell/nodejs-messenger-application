@@ -14,6 +14,7 @@ specifiers:
   signale: ^1.4.0
   tsup: ^6.5.0
   tsx: ^3.12.1
+  type-fest: ^3.5.0
   typescript: ^4.9.4
 
 dependencies:
@@ -24,6 +25,7 @@ dependencies:
   nanoid: 4.0.0
   reflect-metadata: 0.1.13
   signale: 1.4.0
+  type-fest: 3.5.0
 
 devDependencies:
   '@swc/cli': 0.1.59_@swc+core@1.3.24
@@ -2346,6 +2348,11 @@ packages:
     dependencies:
       safe-buffer: 5.2.1
     dev: true
+
+  /type-fest/3.5.0:
+    resolution: {integrity: sha512-bI3zRmZC8K0tUz1HjbIOAGQwR2CoPQG68N5IF7gm0LBl8QSNXzkmaWnkWccCUL5uG9mCsp4sBwC8SBrNSISWew==}
+    engines: {node: '>=14.16'}
+    dev: false
 
   /typescript/4.9.4:
     resolution: {integrity: sha512-Uz+dTXYzxXXbsFpM86Wh3dKCxrQqUcVMxwU54orwlJjOpO3ao8L7j5lH+dWfTwgCwIuM9GQ2kvVotzYJMXTBZg==}

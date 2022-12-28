@@ -43,7 +43,12 @@ export class SendMessageService
       );
     }
 
-    const message = new Message({ receiver: thread, sender: user });
+    const message = new Message({
+      receiver: thread,
+      sender: user,
+      message: request.message,
+      attachments: request.attachments,
+    });
 
     const savedMessage = await this.messageRepository.save(message);
 

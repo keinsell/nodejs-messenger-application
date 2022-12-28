@@ -30,6 +30,7 @@
     "diod": "^2.0.0",
     "nanoid": "^4.0.0",
     "reflect-metadata": "^0.1.13",
-    "signale": "^1.4.0"
+    "signale": "^1.4.0",
+    "type-fest": "^3.5.0"
   }
 }
