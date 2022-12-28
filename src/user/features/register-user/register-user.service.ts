@@ -1,6 +1,5 @@
 import { Service } from "diod";
 import { CommandHandler } from "../../../_common/usecase.js";
-import { RegisterUserRequest } from "./data-transfer/register-user.request.js";
 import { RegisterUserResponse } from "./data-transfer/register-user.response.js";
 import { UserRepository } from "../../repository.js";
 import { User } from "../../entity.js";
