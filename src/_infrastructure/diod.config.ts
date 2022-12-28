@@ -6,6 +6,7 @@ import { ThreadRepository } from "../thread/repository.js";
 import { Hasher } from "../_common/security/hasher/adapter.js";
 import { Argon2Hasher } from "../_common/security/hasher/argon2.hasher.js";
 import { RegisterUserService } from "../user/features/register-user/register-user.service.js";
+import { GetThreadService } from "../thread/features/get-thread/get-thread.service.js";
 
 const builder = new ContainerBuilder();
 
@@ -24,6 +25,7 @@ builder.registerAndUse(SendMessageService);
 builder.registerAndUse(RegisterUserService);
 
 // Thread-related Services
+builder.registerAndUse(GetThreadService);
 
 // Other Services
 

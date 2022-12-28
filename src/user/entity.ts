@@ -2,8 +2,12 @@ import { Entity } from "../_common/entity.js";
 import { Password } from "./value-objects/password.vo.js";
 
 interface UserProperties {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
   username: string;
   password: Password;
+  birthdate?: Date;
 }
 
 export class User extends Entity<UserProperties> {

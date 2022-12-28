@@ -19,6 +19,11 @@ export class UserRepository {
     return user;
   }
 
+  async findById(userId: string): Promise<User | undefined> {
+    const user = USER_STORE.find((u) => u.id === userId);
+    return user;
+  }
+
   static findByUsernameOrThrow(username: string) {
     const user = USER_STORE.find((u) => u.username === username);
 
