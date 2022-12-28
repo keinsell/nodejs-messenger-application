@@ -1,23 +1,24 @@
 import { Logger } from "../../../_common/logger/adapter.js";
-import { Usecase } from "../../../_common/usecase.js";
+import { CommandHandler } from "../../../_common/usecase.js";
 import { User } from "../../../user/entity.js";
 import { UserRepository } from "../../../user/repository.js";
 import { Thread } from "../../entity.js";
 import { ThreadRepository } from "../../repository.js";
-import { GetThreadRequest } from "./get-thread.request.js";
-import { GetThreadResponse } from "./get-thread.response.js";
 import { Service } from "diod";
+import { GetThreadCommand } from "./get-thread.command.js";
 
 @Service()
 export class GetThreadService
-  implements Usecase<GetThreadRequest, GetThreadResponse>
+  implements CommandHandler<GetThreadCommand, Thread>
 {
   constructor(
     private readonly threadRepository: ThreadRepository,
     private readonly userRepository: UserRepository,
     private readonly logger: Logger
   ) {}
-  async execute(request: GetThreadRequest): Promise<GetThreadResponse> {
+  async execute(request: GetThreadCommand): Promise<Thread> {
+    this.logger.log("Recived command:", request);
+
     const users: User[] = [];
 
     for await (const userId of request.userIds) {
@@ -39,15 +40,11 @@ export class GetThreadService
 
       this.logger.log(`Created thread ${savedThread.id}`);
 
-      return {
-        id: savedThread.id,
-      };
+      return savedThread;
     }
 
     this.logger.log(`Found thread ${thread.id}`);
 
-    return {
-      id: thread.id,
-    };
+    return thread;
   }
 }

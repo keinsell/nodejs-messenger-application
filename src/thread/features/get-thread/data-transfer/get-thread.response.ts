@@ -1,3 +1,3 @@
-import { ThreadResponse } from "../../response.js";
+import { ThreadResponse } from "../../../response.js";
 
 export interface GetThreadResponse extends ThreadResponse {}

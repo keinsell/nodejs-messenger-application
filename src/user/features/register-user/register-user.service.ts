@@ -1,16 +1,17 @@
 import { Service } from "diod";
-import { Usecase } from "../../../_common/usecase.js";
-import { RegisterUserRequest } from "./register-user.request.js";
-import { RegisterUserResponse } from "./register-user.response.js";
+import { CommandHandler } from "../../../_common/usecase.js";
+import { RegisterUserRequest } from "./data-transfer/register-user.request.js";
+import { RegisterUserResponse } from "./data-transfer/register-user.response.js";
 import { UserRepository } from "../../repository.js";
 import { User } from "../../entity.js";
 import { Password } from "../../value-objects/password.vo.js";
 import { Hasher } from "../../../_common/security/hasher/adapter.js";
 import { Logger } from "../../../_common/logger/adapter.js";
+import { RegisterUserCommand } from "./register-user.command.js";
 
 @Service()
 export class RegisterUserService
-  implements Usecase<RegisterUserRequest, RegisterUserResponse>
+  implements CommandHandler<RegisterUserCommand, RegisterUserResponse>
 {
   constructor(
     private readonly userRepository: UserRepository,
@@ -18,7 +19,12 @@ export class RegisterUserService
     private readonly logger: Logger
   ) {}
 
-  async execute(request: RegisterUserRequest): Promise<RegisterUserResponse> {
+  async execute(request: RegisterUserCommand): Promise<RegisterUserResponse> {
+    this.logger.log(
+      `Recived request to register user (${request.id})`,
+      request
+    );
+
     const isUserInDatabase = this.userRepository.findByUsername(
       request.username
     );

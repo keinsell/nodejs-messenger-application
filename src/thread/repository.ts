@@ -41,4 +41,9 @@ export class ThreadRepository {
 
     return threads;
   }
+
+  async findById(threadId: string) {
+    const thread = THREAD_STORE.find((t) => t.id === threadId);
+    return thread;
+  }
 }

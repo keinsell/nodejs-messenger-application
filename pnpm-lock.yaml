@@ -8,6 +8,7 @@ specifiers:
   consola: ^2.15.3
   cuid: ^2.1.8
   diod: ^2.0.0
+  nanoid: ^4.0.0
   nodemon: ^2.0.20
   reflect-metadata: ^0.1.13
   signale: ^1.4.0
@@ -20,6 +21,7 @@ dependencies:
   consola: 2.15.3
   cuid: 2.1.8
   diod: 2.0.0
+  nanoid: 4.0.0
   reflect-metadata: 0.1.13
   signale: 1.4.0
 
@@ -1596,6 +1598,12 @@ packages:
       object-assign: 4.1.1
       thenify-all: 1.6.0
     dev: true
+
+  /nanoid/4.0.0:
+    resolution: {integrity: sha512-IgBP8piMxe/gf73RTQx7hmnhwz0aaEXYakvqZyE302IXW3HyVNhdNGC+O2MwMAVhLEnvXlvKtGbtJf6wvHihCg==}
+    engines: {node: ^14 || ^16 || >=18}
+    hasBin: true
+    dev: false
 
   /nice-try/1.0.5:
     resolution: {integrity: sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==}
