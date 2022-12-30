@@ -11,6 +11,9 @@ import { Logger } from "../_common/logger/adapter.js";
 import { ConsoleLogger } from "../_common/logger/console.logger.js";
 import { EndToEndEncryption } from "../_common/security/E2EE/adapter.js";
 import { RecieveMessageService } from "../message/features/recieve-message/recieve-message.service.js";
+import { LocalMessageRepository } from "../message/repositories/message.local.repository.js";
+import { LocalUserRepository } from "../user/repositories/user.local.repository.js";
+import { LocalThreadRepository } from "../thread/repositories/thread.local.repository.js";
 
 const builder = new ContainerBuilder();
 
@@ -20,9 +23,9 @@ builder.register(Logger).use(ConsoleLogger);
 builder.registerAndUse(EndToEndEncryption);
 
 // Repositories
-builder.registerAndUse(UserRepository);
-builder.registerAndUse(MessageRepository);
-builder.registerAndUse(ThreadRepository);
+builder.register(UserRepository).use(LocalUserRepository).asSingleton();
+builder.register(MessageRepository).use(LocalMessageRepository).asSingleton();
+builder.register(ThreadRepository).use(LocalThreadRepository).asSingleton();
 
 // Message-related Services
 builder.registerAndUse(SendMessageService);

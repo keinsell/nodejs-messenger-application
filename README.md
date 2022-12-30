@@ -6,6 +6,15 @@ Learning-like repository which aims to create back-end of chat application which
 
 Application introduces core modules like `User`, `Thread` and `Message`. You start exploring functionality from `User`, `Message` and end up on `Thread` which includes both of previous modules.
 
+## Technology Used
+
+I'm all about giving people the freedom to choose and customize, but that doesn't mean we should totally ditch the rules. I'm always on the lookout for libraries and frameworks that give us the best of both worlds - the ability to bend and mold them to our needs, but with a solid set of guidelines to follow.
+
+- [`tinyhttp`](https://tinyhttp.v1rtl.site) over `express`, not much innovative but I really like `ESNext` and `ESM` so `tinyhttp` seems like a perfect choice over there. Whole application server is based on this library with some additional generics such as `Controller` was written on my own to simplify application structure at scale.
+- `prisma`, one of my favourite tools for working with databases - a lot of modularity when it comes to migration from (for example) MySQL to CockroachDB.
+
+## Concept
+
 - Conversation between multiple `User`s will be called `Thread`
 - `Thread` can contain multiple `Message`s which are related to specified `Thread`.
 - `Thread`s should not be duplicated, when one with same `User`s exists should be used again.
