@@ -15,4 +15,8 @@ export class Thread extends Entity<ThreadProperties> {
   get members() {
     return this.properties.members;
   }
+
+  get messages() {
+    return this.properties.messages;
+  }
 }

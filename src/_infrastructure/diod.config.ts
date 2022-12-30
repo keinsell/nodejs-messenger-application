@@ -10,6 +10,7 @@ import { GetThreadService } from "../thread/features/get-thread/get-thread.servi
 import { Logger } from "../_common/logger/adapter.js";
 import { ConsoleLogger } from "../_common/logger/console.logger.js";
 import { EndToEndEncryption } from "../_common/security/E2EE/adapter.js";
+import { RecieveMessageService } from "../message/features/recieve-message/recieve-message.service.js";
 
 const builder = new ContainerBuilder();
 
@@ -25,6 +26,7 @@ builder.registerAndUse(ThreadRepository);
 
 // Message-related Services
 builder.registerAndUse(SendMessageService);
+builder.registerAndUse(RecieveMessageService);
 
 // User-related Services
 builder.registerAndUse(RegisterUserService);

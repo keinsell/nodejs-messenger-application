@@ -4,7 +4,7 @@ import { MessageRepository } from "../../repository.js";
 import { Logger } from "../../../_common/logger/adapter.js";
 import { CommandHandler } from "../../../_common/usecase.js";
 import { SendMessageCommand } from "./send-message.command.js";
-import { Message } from "../../entity.js";
+import { Message, MessageStatus } from "../../entity.js";
 import { ThreadRepository } from "../../../thread/repository.js";
 import { UserIsNotMemberOfThreadError } from "../../../thread/errors/user-is-not-member-of-thread.error.js";
 import { ThreadNotFoundError } from "../../../thread/errors/thread-not-found.error.js";
@@ -49,11 +49,12 @@ export class SendMessageService
       sender: user,
       message: request.message,
       attachments: request.attachments,
+      status: MessageStatus.sent,
     });
 
     const savedMessage = await this.messageRepository.save(message);
 
-    this.logger.log(`Created message ${savedMessage.id}`);
+    this.logger.log(`Created/Sent message ${savedMessage.id}`);
 
     return savedMessage;
   }

@@ -2,15 +2,25 @@ import { Entity } from "../_common/entity.js";
 import { Thread } from "../thread/entity.js";
 import { User } from "../user/entity.js";
 import type { SetRequired } from "type-fest";
+
+export enum MessageStatus {
+  pending = "PENDING",
+  sent = "SENT",
+  delivered = "DELIVERED",
+  seen = "SEEN",
+}
+
 interface MessageProperties {
   receiver: Thread;
   sender: User;
   attachments?: any[];
   message?: string;
+  status?: MessageStatus;
 }
 
 export class Message extends Entity<MessageProperties> {
   constructor(properties: MessageProperties, id?: string) {
+    properties.status = properties.status ?? MessageStatus.pending;
     super(properties, id);
   }
 
@@ -20,6 +30,10 @@ export class Message extends Entity<MessageProperties> {
 
   get sender() {
     return this.properties.sender;
+  }
+
+  set status(status: MessageStatus) {
+    this.properties.status = status;
   }
 }
 

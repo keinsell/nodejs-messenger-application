@@ -46,7 +46,7 @@ export class GetThreadService
         throw new UserIsNotMemberOfThreadError(user, thread);
       }
 
-      this.logger.log(`Found thread:`, thread);
+      this.logger.log(`Found existing thread:`, thread);
 
       return thread;
     }
@@ -71,12 +71,12 @@ export class GetThreadService
       const newThread = new Thread({ members: users, messages: [] });
       const savedThread = await this.threadRepository.save(newThread);
 
-      this.logger.log(`Created thread:`, savedThread);
+      this.logger.log(`Created new thread:`, savedThread);
 
       return savedThread;
     }
 
-    this.logger.log(`Found thread:`, thread);
+    this.logger.log(`Found exiting thread:`, thread);
 
     return thread;
   }

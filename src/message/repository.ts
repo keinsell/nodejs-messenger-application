@@ -24,4 +24,9 @@ export class MessageRepository {
     const messages = MESSAGE_STORE.filter((m) => m.receiver.id === thread.id);
     return messages;
   }
+
+  findById(messageId: any) {
+    const message = MESSAGE_STORE.find((m) => m.id === messageId);
+    return message;
+  }
 }
