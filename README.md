@@ -1,6 +1,10 @@
 # not-a-signal
 
-Repository aims to explore possibilities on chat application with strong domain information.
+Learning-like repository which aims to create back-end of chat application which will include basic features such as sending messages and communicating users. My time is limited for this idea and I would like to keep everything simple. This was purely for recriutation purposes as I do not will to spend any more minute on recriutments task just to validate my hello-world skills.
+
+## Onboarding
+
+Application introduces core modules like `User`, `Thread` and `Message`. You start exploring functionality from `User`, `Message` and end up on `Thread` which includes both of previous modules.
 
 - Conversation between multiple `User`s will be called `Thread`
 - `Thread` can contain multiple `Message`s which are related to specified `Thread`.
