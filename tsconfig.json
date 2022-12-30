@@ -15,6 +15,7 @@
     "forceConsistentCasingInFileNames": true,
     "inlineSources": false,
     "isolatedModules": true,
+    "allowJs": true,
     "strictNullChecks": false,
     "noUnusedParameters": false,
     "preserveWatchOutput": true,
@@ -23,10 +24,14 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "allowSyntheticDefaultImports": true,
+    "outDir": "./dist",
     "lib": ["ESNext"],
     "module": "NodeNext",
     "moduleResolution": "node",
     "target": "ESNext"
+  },
+  "ts-node": {
+    "swc": true
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
