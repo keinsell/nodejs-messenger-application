@@ -5,10 +5,10 @@ import {
   LocalUserRepository,
   USER_STORE,
 } from "../../repositories/user.local.repository.js";
-import { Argon2Hasher } from "../../../_common/security/hasher/argon2.hasher.js";
-import { ConsoleLogger } from "../../../_common/logger/console.logger.js";
+import { Argon2Hasher } from "../../../_common/security/hasher/argon2/argon2.hasher.js";
 import { EndToEndEncryption } from "../../../_common/security/E2EE/adapter.js";
 import { RegisterUserService } from "./register-user.service.js";
+import { MockLogger } from "../../../_common/logger/mock.logger.js";
 
 const test = anyTest as TestFn<{
   service: RegisterUserService;
@@ -19,7 +19,7 @@ test.beforeEach((t) => {
   t.context.service = new RegisterUserService(
     new LocalUserRepository(),
     new Argon2Hasher(),
-    new ConsoleLogger(),
+    new MockLogger(),
     new EndToEndEncryption()
   );
 
