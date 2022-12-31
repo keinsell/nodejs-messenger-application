@@ -11,9 +11,9 @@ import { Logger } from "./_common/logger/adapter.js";
 import { ConsoleLogger } from "./_common/logger/console.logger.js";
 import { EndToEndEncryption } from "./_common/security/E2EE/adapter.js";
 import { RecieveMessageService } from "./message/features/recieve-message/recieve-message.service.js";
-import { LocalMessageRepository } from "./message/repositories/message.local.repository.js";
-import { LocalUserRepository } from "./user/repositories/user.local.repository.js";
-import { LocalThreadRepository } from "./thread/repositories/thread.local.repository.js";
+import { LocalMessageRepository } from "./message/repositories/local.message.repository.js";
+import { LocalUserRepository } from "./user/repositories/local.user.repository.js";
+import { LocalThreadRepository } from "./thread/repositories/local.thread.repository.js";
 
 const builder = new ContainerBuilder();
 

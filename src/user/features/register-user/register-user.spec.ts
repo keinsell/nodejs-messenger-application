@@ -4,7 +4,7 @@ import { RegisterUserCommand } from "./register-user.command.js";
 import {
   LocalUserRepository,
   USER_STORE,
-} from "../../repositories/user.local.repository.js";
+} from "../../repositories/local.user.repository.js";
 import { Argon2Hasher } from "../../../_common/security/hasher/argon2/argon2.hasher.js";
 import { EndToEndEncryption } from "../../../_common/security/E2EE/adapter.js";
 import { RegisterUserService } from "./register-user.service.js";
