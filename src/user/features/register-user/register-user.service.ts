@@ -37,7 +37,7 @@ export class RegisterUserService
         username: request.username,
         password: new Password(
           await this.hasher.hash(request.password),
-          request.password
+          this.hasher
         ),
       })
     );
