@@ -24,7 +24,7 @@ export class RegisterUserService
   async execute(request: RegisterUserCommand): Promise<RegisterUserResponse> {
     this.logger.debug(request);
 
-    const isUserInDatabase = this.userRepository.findByUsername(
+    const isUserInDatabase = await this.userRepository.findByUsername(
       request.username
     );
 
@@ -32,12 +32,12 @@ export class RegisterUserService
       throw new UserAlreadyExists(request.username);
     }
 
-    const user = this.userRepository.save(
+    const user = await this.userRepository.save(
       new User({
         username: request.username,
         password: new Password(
           await this.hasher.hash(request.password),
-          request.password
+          this.hasher
         ),
       })
     );
