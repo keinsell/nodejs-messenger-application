@@ -1,6 +1,6 @@
 import argon2 from "argon2";
 import { Service } from "diod";
-import { Hasher } from "./adapter.js";
+import { Hasher } from "../adapter.js";
 
 @Service()
 export class Argon2Hasher implements Hasher {
