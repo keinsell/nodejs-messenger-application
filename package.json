@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon",
     "test": "ava",
-    "build": "tsup-node"
+    "build": "tsup-node",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.1",
@@ -22,6 +23,7 @@
     "@types/signale": "^1.4.4",
     "ava": "^5.1.0",
     "conventional-changelog-conventionalcommits": "^4.6.3",
+    "husky": "^8.0.3",
     "nodemon": "^2.0.20",
     "semantic-release": "^19.0.2",
     "ts-node": "^10.9.1",
