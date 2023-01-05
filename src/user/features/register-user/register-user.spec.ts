@@ -1,43 +1,51 @@
-import anyTest, { TestFn } from "ava";
-import "reflect-metadata";
-import { RegisterUserCommand } from "./register-user.command.js";
+import anyTest, { TestFn } from 'ava'
+import 'reflect-metadata'
+import { RegisterUserCommand } from './register-user.command.js'
 import {
-  LocalUserRepository,
-  USER_STORE,
-} from "../../repositories/local.user.repository.js";
-import { Argon2Hasher } from "../../../_common/security/hasher/argon2/argon2.hasher.js";
-import { EndToEndEncryption } from "../../../_common/security/E2EE/adapter.js";
-import { RegisterUserService } from "./register-user.service.js";
-import { MockLogger } from "../../../_common/logger/mock.logger.js";
+	LocalUserRepository,
+	USER_STORE,
+} from '../../repositories/local.user.repository.js'
+import { Argon2Hasher } from '../../../_common/security/hasher/argon2/argon2.hasher.js'
+import { EndToEndEncryption } from '../../../_common/security/E2EE/adapter.js'
+import { RegisterUserService } from './register-user.service.js'
+import { MockLogger } from '../../../_common/logger/mock.logger.js'
 
 const test = anyTest as TestFn<{
-  service: RegisterUserService;
-  command: RegisterUserCommand;
-}>;
+	service: RegisterUserService
+	command: RegisterUserCommand
+}>
 
 test.beforeEach((t) => {
-  t.context.service = new RegisterUserService(
-    new LocalUserRepository(),
-    new Argon2Hasher(),
-    new MockLogger(),
-    new EndToEndEncryption()
-  );
+	t.context.service = new RegisterUserService(
+		new LocalUserRepository(),
+		new Argon2Hasher(),
+		new MockLogger(),
+		new EndToEndEncryption(),
+	)
 
-  t.context.command = new RegisterUserCommand({
-    username: "keinsell",
-    password: "keinsell",
-    correlationId: "1234",
-  });
-});
+	t.context.command = new RegisterUserCommand({
+		username: 'keinsell',
+		password: 'keinsell',
+		correlationId: '1234',
+	})
+})
 
-test("register user", async (t) => {
-  const response = await t.context.service.execute(t.context.command);
+test('register user', async (t) => {
+	const response = await t.context.service.execute(
+		t.context.command,
+	)
 
-  t.is(response.username, "keinsell", "Username should be keinsell");
+	t.is(
+		response.username,
+		'keinsell',
+		'Username should be keinsell',
+	)
 
-  // Check if USER_STORE array has user
-  const isUser = USER_STORE.some((user) => user.username === "keinsell");
-  t.true(isUser);
-});
+	// Check if USER_STORE array has user
+	const isUser = USER_STORE.some(
+		(user) => user.username === 'keinsell',
+	)
+	t.true(isUser)
+})
 
-test.todo("register user with existing username");
+test.todo('register user with existing username')

@@ -1,8 +1,8 @@
-import { MessageResponse } from "../message/response.js";
-import { UserResponse } from "../user/response.js";
+import { MessageResponse } from '../message/response.js'
+import { UserResponse } from '../user/response.js'
 
 export interface ThreadResponse {
-  id: string;
-  members: UserResponse[];
-  messages: MessageResponse[];
+	id: string
+	members: UserResponse[]
+	messages: MessageResponse[]
 }

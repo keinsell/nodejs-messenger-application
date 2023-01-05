@@ -1,60 +1,72 @@
-import "reflect-metadata";
-import { container } from "./container.js";
-import { RegisterUserService } from "./user/features/register-user/register-user.service.js";
-import { GetThreadService } from "./thread/features/get-thread/get-thread.service.js";
-import { RegisterUserCommand } from "./user/features/register-user/register-user.command.js";
-import { GetThreadCommand } from "./thread/features/get-thread/get-thread.command.js";
-import { SendMessageService } from "./message/features/send-message/send-message.service.js";
-import { SendMessageCommand } from "./message/features/send-message/send-message.command.js";
-import cuid from "cuid";
-import { RecieveMessageService } from "./message/features/recieve-message/recieve-message.service.js";
-import { RecieveMessageCommand } from "./message/features/recieve-message/recieve-message.command.js";
+import 'reflect-metadata'
+import { container } from './container.js'
+import { RegisterUserService } from './user/features/register-user/register-user.service.js'
+import { GetThreadService } from './thread/features/get-thread/get-thread.service.js'
+import { RegisterUserCommand } from './user/features/register-user/register-user.command.js'
+import { GetThreadCommand } from './thread/features/get-thread/get-thread.command.js'
+import { SendMessageService } from './message/features/send-message/send-message.service.js'
+import { SendMessageCommand } from './message/features/send-message/send-message.command.js'
+import cuid from 'cuid'
+import { RecieveMessageService } from './message/features/recieve-message/recieve-message.service.js'
+import { RecieveMessageCommand } from './message/features/recieve-message/recieve-message.command.js'
 
-const domonstrationExecutionCorreation = cuid();
+const domonstrationExecutionCorreation = cuid()
 
-const user = await container.get(RegisterUserService).execute(
-  new RegisterUserCommand({
-    username: "keinsell",
-    password: "keinsell",
-    correlationId: domonstrationExecutionCorreation,
-  })
-);
+const user = await container
+	.get(RegisterUserService)
+	.execute(
+		new RegisterUserCommand({
+			username: 'keinsell',
+			password: 'keinsell',
+			correlationId: domonstrationExecutionCorreation,
+		}),
+	)
 
-const user2 = await container.get(RegisterUserService).execute(
-  new RegisterUserCommand({
-    username: "keinsell2",
-    password: "keinsell2",
-    correlationId: domonstrationExecutionCorreation,
-  })
-);
+const user2 = await container
+	.get(RegisterUserService)
+	.execute(
+		new RegisterUserCommand({
+			username: 'keinsell2',
+			password: 'keinsell2',
+			correlationId: domonstrationExecutionCorreation,
+		}),
+	)
 
-const thread = await container.get(GetThreadService).execute(
-  new GetThreadCommand({
-    userIds: [user.id, user2.id],
-    userId: user.id,
-    correlationId: domonstrationExecutionCorreation,
-  })
-);
+const thread = await container
+	.get(GetThreadService)
+	.execute(
+		new GetThreadCommand({
+			userIds: [user.id, user2.id],
+			userId: user.id,
+			correlationId: domonstrationExecutionCorreation,
+		}),
+	)
 
-const message = await container.get(SendMessageService).execute(
-  new SendMessageCommand({
-    message: "Hello World!",
-    threadId: thread.id,
-    userId: user.id,
-    correlationId: domonstrationExecutionCorreation,
-  })
-);
+const message = await container
+	.get(SendMessageService)
+	.execute(
+		new SendMessageCommand({
+			message: 'Hello World!',
+			threadId: thread.id,
+			userId: user.id,
+			correlationId: domonstrationExecutionCorreation,
+		}),
+	)
 
 await container
-  .get(RecieveMessageService)
-  .execute(new RecieveMessageCommand({ messageId: message.id }));
+	.get(RecieveMessageService)
+	.execute(
+		new RecieveMessageCommand({
+			messageId: message.id,
+		}),
+	)
 
 const x = await container.get(GetThreadService).execute(
-  new GetThreadCommand({
-    threadId: thread.id,
-    userId: user.id,
-    correlationId: domonstrationExecutionCorreation,
-  })
-);
+	new GetThreadCommand({
+		threadId: thread.id,
+		userId: user.id,
+		correlationId: domonstrationExecutionCorreation,
+	}),
+)
 
-console.log(x.messages);
+console.log(x.messages)

@@ -1,3 +1,4 @@
-import { UserResponse } from "../../../response.js";
+import { UserResponse } from '../../../response.js'
 
-export interface RegisterUserResponse extends UserResponse {}
+export interface RegisterUserResponse
+	extends UserResponse {}

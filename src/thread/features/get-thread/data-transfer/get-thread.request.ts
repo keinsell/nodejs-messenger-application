@@ -1,3 +1,3 @@
 export interface GetThreadRequest {
-  userIds: string[];
+	userIds: string[]
 }

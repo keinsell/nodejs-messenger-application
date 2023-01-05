@@ -1,3 +1,4 @@
-import { MessageResponse } from "../../../response.js";
+import { MessageResponse } from '../../../response.js'
 
-export interface SendMessageResponse extends MessageResponse {}
+export interface SendMessageResponse
+	extends MessageResponse {}

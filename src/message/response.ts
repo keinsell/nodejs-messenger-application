@@ -1,4 +1,4 @@
 export interface MessageResponse {
-  id: string;
-  message: string;
+	id: string
+	message: string
 }
