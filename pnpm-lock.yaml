@@ -1,8 +1,8 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@commitlint/cli': 17.1.2
-  '@commitlint/config-conventional': 17.1.0
+  '@commitlint/cli': 17.4.0
+  '@commitlint/config-conventional': 17.4.0
   '@semantic-release/changelog': ^6.0.1
   '@semantic-release/commit-analyzer': ^9.0.2
   '@semantic-release/git': ^10.0.1
@@ -49,8 +49,8 @@ dependencies:
   type-fest: 3.5.0
 
 devDependencies:
-  '@commitlint/cli': 17.1.2_lcqpw2r6tlm2y4ozgw4tcp777e
-  '@commitlint/config-conventional': 17.1.0
+  '@commitlint/cli': 17.4.0_lcqpw2r6tlm2y4ozgw4tcp777e
+  '@commitlint/config-conventional': 17.4.0
   '@semantic-release/changelog': 6.0.2_semantic-release@19.0.5
   '@semantic-release/commit-analyzer': 9.0.2_semantic-release@19.0.5
   '@semantic-release/git': 10.0.1_semantic-release@19.0.5
@@ -108,8 +108,8 @@ packages:
     dev: true
     optional: true
 
-  /@commitlint/cli/17.1.2_lcqpw2r6tlm2y4ozgw4tcp777e:
-    resolution: {integrity: sha512-h/4Hlka3bvCLbnxf0Er2ri5A44VMlbMSkdTRp8Adv2tRiklSTRIoPGs7OEXDv3EoDs2AAzILiPookgM4Gi7LOw==}
+  /@commitlint/cli/17.4.0_lcqpw2r6tlm2y4ozgw4tcp777e:
+    resolution: {integrity: sha512-SEY4sYe8yVlgxPP7X0wJb96DBAGBPsCsy6QbqJt/UECbIAjDeDV5xXBV4jnS7T/qMC10sk6Ub9kDhEX0VWvblw==}
     engines: {node: '>=v14'}
     hasBin: true
     dependencies:
@@ -119,7 +119,7 @@ packages:
       '@commitlint/read': 17.4.0
       '@commitlint/types': 17.4.0
       execa: 5.1.1
-      lodash: 4.17.21
+      lodash.isfunction: 3.0.9
       resolve-from: 5.0.0
       resolve-global: 1.0.0
       yargs: 17.6.2
@@ -129,8 +129,8 @@ packages:
       - '@types/node'
     dev: true
 
-  /@commitlint/config-conventional/17.1.0:
-    resolution: {integrity: sha512-WU2p0c9/jLi8k2q2YrDV96Y8XVswQOceIQ/wyJvQxawJSCasLdRB3kUIYdNjOCJsxkpoUlV/b90ZPxp1MYZDiA==}
+  /@commitlint/config-conventional/17.4.0:
+    resolution: {integrity: sha512-G4XBf45J4ZMspO4NwBFzY3g/1Kb+B42BcIxeikF8wucQxcyxcmhRdjeQpRpS1XEcBq5pdtEEQFipuB9IuiNFhw==}
     engines: {node: '>=v14'}
     dependencies:
       conventional-changelog-conventionalcommits: 5.0.0
@@ -3205,6 +3205,10 @@ packages:
 
   /lodash.escaperegexp/4.1.2:
     resolution: {integrity: sha512-TM9YBvyC84ZxE3rgfefxUWiQKLilstD6k7PTGt6wfbtXF8ixIJLOL3VYyV/z+ZiPLsVxAsKAFVwWlWeb2Y8Yyw==}
+    dev: true
+
+  /lodash.isfunction/3.0.9:
+    resolution: {integrity: sha512-AirXNj15uRIMMPihnkInB4i3NHeb4iBtNg9WRWuK2o31S+ePwwNmDPaTL3o7dTJ+VXNZim7rFs4rxN4YU1oUJw==}
     dev: true
 
   /lodash.ismatch/4.4.0:
