@@ -1,0 +1,61 @@
+name: CI
+
+on:
+    push:
+        branches:
+            - main
+            - release/*
+    pull_request:
+        branches:
+            - main
+            - release/*
+
+env:
+    PNPM_CACHE_FOLDER: .pnpm-store
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Setup caching
+              uses: actions/cache@v2
+              with:
+                  path: ${{ env.PNPM_CACHE_FOLDER }}
+                  key:
+                      ${{ runner.os }}-pnpm-${{
+                      hashFiles('**/pnpm-lock.yaml') }}
+                  restore-keys: |
+                      ${{ runner.os }}-pnpm-
+
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v2
+              with:
+                  node-version: 18.x
+
+            - name: Install pnpm
+              uses: pnpm/action-setup@v2
+              with:
+                  version: 7.x
+
+            - name: Setup pnpm config
+              run:
+                  pnpm config set store-dir ${{
+                  env.PNPM_CACHE_FOLDER }}
+
+            - name: Install dependencies
+              run: pnpm install
+
+            # TODO: Linting, formatting
+
+            - name: Build
+              run: pnpm build
+
+            - name: Test
+              run: pnpm test
+
+            - name: Release
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: npx semantic-release
