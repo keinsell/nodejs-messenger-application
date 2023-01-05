@@ -23,7 +23,7 @@
     ]
   ],
   "branches": [
-    { "name": "main", "channel": "next", "prerelease": "dev" },
-    { "name": "stable", "channel": "latest", "prerelease": false }
+    { "name": "release/stable", "prerelease": false },
+    { "name": "main", "prerelease": true }
   ]
 }
