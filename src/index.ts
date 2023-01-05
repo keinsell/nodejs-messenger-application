@@ -53,13 +53,11 @@ const message = await container
 		}),
 	)
 
-await container
-	.get(RecieveMessageService)
-	.execute(
-		new RecieveMessageCommand({
-			messageId: message.id,
-		}),
-	)
+await container.get(RecieveMessageService).execute(
+	new RecieveMessageCommand({
+		messageId: message.id,
+	}),
+)
 
 const x = await container.get(GetThreadService).execute(
 	new GetThreadCommand({
