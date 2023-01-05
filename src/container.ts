@@ -4,7 +4,6 @@ import { SendMessageService } from './message/features/send-message/send-message
 import { MessageRepository } from './message/repository.js'
 import { ThreadRepository } from './thread/repository.js'
 import { Hasher } from './_common/security/hasher/adapter.js'
-import { Argon2Hasher } from './_common/security/hasher/argon2.hasher.js'
 import { RegisterUserService } from './user/features/register-user/register-user.service.js'
 import { GetThreadService } from './thread/features/get-thread/get-thread.service.js'
 import { Logger } from './_common/logger/adapter.js'
@@ -14,6 +13,7 @@ import { RecieveMessageService } from './message/features/recieve-message/reciev
 import { LocalMessageRepository } from './message/repositories/local.message.repository.js'
 import { LocalUserRepository } from './user/repositories/local.user.repository.js'
 import { LocalThreadRepository } from './thread/repositories/local.thread.repository.js'
+import { Argon2Hasher } from './_common/security/hasher/argon2/argon2.hasher.js'
 
 const builder = new ContainerBuilder()
 
