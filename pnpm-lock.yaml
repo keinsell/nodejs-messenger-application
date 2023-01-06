@@ -27,7 +27,7 @@ specifiers:
   nodemon: ^2.0.20
   prettier: ^2.6.0
   prettier-plugin-packagejson: ^2.2.15
-  prettier-plugin-prisma: ^3.8.0
+  prettier-plugin-prisma: ^4.0.0
   prettier-plugin-properties: ^0.2.0
   prettier-plugin-sh: ^0.12.0
   reflect-metadata: ^0.1.13
@@ -71,7 +71,7 @@ devDependencies:
   nodemon: 2.0.20
   prettier: 2.8.1
   prettier-plugin-packagejson: 2.3.0_prettier@2.8.1
-  prettier-plugin-prisma: 3.14.0_prettier@2.8.1
+  prettier-plugin-prisma: 4.8.0_prettier@2.8.1
   prettier-plugin-properties: 0.2.0
   prettier-plugin-sh: 0.12.8_prettier@2.8.1
   semantic-release: 19.0.5
@@ -529,8 +529,8 @@ packages:
       tslib: 2.4.1
     dev: true
 
-  /@prisma/prisma-fmt-wasm/3.14.0-36.2b0c12756921c891fec4f68d9444e18c7d5d4a6a:
-    resolution: {integrity: sha512-YwiGDAfUqLPz1NIyd6y6LyT1ViiTCXNx7AFWuMwb7aGhBmzhfuTeo/MQpzlA9x90wKh2ACJ4Fa3nZS5Wvr8xbg==}
+  /@prisma/prisma-fmt-wasm/4.8.0-62.351fb726ff78e50c7d6db6331d66d4db0e378c53:
+    resolution: {integrity: sha512-OISxCNdlZ02u2NwQt99pQqpW+8elKaV0HNszJ6QVEZJZJNjnTmYIjSWycVWt+Ul3m1V0DWY4OEKCxwjpqwnjcQ==}
     dev: true
 
   /@semantic-release/changelog/6.0.2_semantic-release@19.0.5:
@@ -4184,13 +4184,13 @@ packages:
       sort-package-json: 1.57.0
     dev: true
 
-  /prettier-plugin-prisma/3.14.0_prettier@2.8.1:
-    resolution: {integrity: sha512-/6xrVjtnFBB591Fq2M/8lCf2agzq0rTLQhKV/VX+dwL0vtbH2KXw+iXWPifPFw3HvcHNbSjZ4yGVPc2Zwf0J5g==}
-    engines: {node: '>=12', npm: '>=7'}
+  /prettier-plugin-prisma/4.8.0_prettier@2.8.1:
+    resolution: {integrity: sha512-rCQsn+NktVbl1Sqq1oTgsB5w71vP7I5tjWJhypw6qzwnagqXsiFOLm4s3Z742EbJBS51c99CYds5s+GxGFlqNQ==}
+    engines: {node: '>=14'}
     peerDependencies:
       prettier: '>=2'
     dependencies:
-      '@prisma/prisma-fmt-wasm': 3.14.0-36.2b0c12756921c891fec4f68d9444e18c7d5d4a6a
+      '@prisma/prisma-fmt-wasm': 4.8.0-62.351fb726ff78e50c7d6db6331d66d4db0e378c53
       prettier: 2.8.1
     dev: true
 
