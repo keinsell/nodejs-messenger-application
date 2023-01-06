@@ -51,7 +51,7 @@
 	},
 	"volta": {
 		"node": "18.13.0",
-		"yarn": "1.18.0"
+		"yarn": "1.22.19"
 	},
 	"dependencies": {
 		"argon2": "^0.30.2",
