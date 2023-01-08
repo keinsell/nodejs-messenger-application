@@ -14,6 +14,7 @@ import { LocalMessageRepository } from './message/repositories/local.message.rep
 import { LocalUserRepository } from './user/repositories/local.user.repository.js'
 import { LocalThreadRepository } from './thread/repositories/local.thread.repository.js'
 import { Argon2Hasher } from './_common/security/hasher/argon2/argon2.hasher.js'
+import { ReadMessageService } from './message/features/read-message/read-message.service.js'
 
 const builder = new ContainerBuilder()
 
@@ -40,6 +41,7 @@ if (process.env.NODE_ENV !== 'testing') {
 	// Message-related Services
 	builder.registerAndUse(SendMessageService)
 	builder.registerAndUse(RecieveMessageService)
+	builder.registerAndUse(ReadMessageService)
 
 	// User-related Services
 	builder.registerAndUse(RegisterUserService)

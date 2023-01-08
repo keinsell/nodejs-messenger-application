@@ -6,7 +6,7 @@ import { CommandHandler } from '../../../_common/usecase.js'
 import { SendMessageCommand } from './send-message.command.js'
 import { Message, MessageStatus } from '../../entity.js'
 import { ThreadRepository } from '../../../thread/repository.js'
-import { UserIsNotMemberOfThreadError } from '../../../thread/errors/user-is-not-member-of-thread.error.js'
+import { UserNotPartOfThreadError } from '../../../thread/errors/user-not-part-of-thread-error.js'
 import { ThreadNotFoundError } from '../../../thread/errors/thread-not-found.error.js'
 import { UserNotFoundError } from '../../../user/errors/user-not-found.error.js'
 
@@ -47,10 +47,7 @@ export class SendMessageService
 		)
 
 		if (!isUserMemberOfThread) {
-			throw new UserIsNotMemberOfThreadError(
-				user,
-				thread,
-			)
+			throw new UserNotPartOfThreadError(user, thread)
 		}
 
 		const message = new Message({

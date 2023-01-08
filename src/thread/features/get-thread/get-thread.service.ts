@@ -7,7 +7,7 @@ import { ThreadRepository } from '../../repository.js'
 import { Service } from 'diod'
 import { GetThreadCommand } from './get-thread.command.js'
 import { UserNotFoundError } from '../../../user/errors/user-not-found.error.js'
-import { UserIsNotMemberOfThreadError } from '../../errors/user-is-not-member-of-thread.error.js'
+import { UserNotPartOfThreadError } from '../../errors/user-not-part-of-thread-error.js'
 import { ThreadNotFoundError } from '../../errors/thread-not-found.error.js'
 
 @Service()
@@ -55,7 +55,7 @@ export class GetThreadService
 				)
 
 			if (!isUserMemberOfThread) {
-				throw new UserIsNotMemberOfThreadError(
+				throw new UserNotPartOfThreadError(
 					user,
 					thread,
 				)

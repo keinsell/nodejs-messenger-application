@@ -9,6 +9,8 @@ import { SendMessageCommand } from './message/features/send-message/send-message
 import cuid from 'cuid'
 import { RecieveMessageService } from './message/features/recieve-message/recieve-message.service.js'
 import { RecieveMessageCommand } from './message/features/recieve-message/recieve-message.command.js'
+import { ReadMessageService } from './message/features/read-message/read-message.service.js'
+import { ReadMessageCommand } from './message/features/read-message/read-message.command.js'
 
 const domonstrationExecutionCorreation = cuid()
 
@@ -68,3 +70,23 @@ const x = await container.get(GetThreadService).execute(
 )
 
 console.log(x.messages)
+
+await container.get(ReadMessageService).execute(
+	new ReadMessageCommand({
+		messageId: message.id,
+		userId: user2.id,
+		correlationId: domonstrationExecutionCorreation,
+	}),
+)
+
+const threadFetch2 = await container
+	.get(GetThreadService)
+	.execute(
+		new GetThreadCommand({
+			threadId: thread.id,
+			userId: user.id,
+			correlationId: domonstrationExecutionCorreation,
+		}),
+	)
+
+console.log(threadFetch2.messages)

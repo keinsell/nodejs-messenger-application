@@ -5,10 +5,9 @@
   env.GREET = "devenv";
 
   # https://devenv.sh/packages/
-  packages = [ pkgs.git pkgs.nodejs pkgs.terraform pkgs.nix ];
+  packages = [ pkgs.git pkgs.nodejs pkgs.terraform pkgs.nix pkgs.docker ];
 
   enterShell = ''
-    hello
     git --version
   '';
 
