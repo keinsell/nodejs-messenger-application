@@ -9,7 +9,7 @@
 		"test:coverage": "c8 ava",
 		"build": "tsup-node",
 		"prepare": "husky install",
-		"lint:prettier": "prettier --write \"**/*.{ts,tsx,md}\"",
+		"lint:prettier": "prettier --write \"**/*.{ts,tsx}\"",
 		"lint": "npm run lint:prettier"
 	},
 	"lint-staged": {
