@@ -61,8 +61,8 @@ devDependencies:
     specifier: ^18.11.18
     version: 18.11.18
   '@types/semantic-release':
-    specifier: ^17.2.3
-    version: 17.2.4
+    specifier: ^20.0.0
+    version: 20.0.0
   '@types/signale':
     specifier: ^1.4.4
     version: 1.4.4
@@ -894,8 +894,8 @@ packages:
     resolution: {integrity: sha512-wWKOClTTiizcZhXnPY4wikVAwmdYHp8q6DmC+EJUzAMsycb7HB32Kh9RN4+0gExjmPmZSAQjgURXIGATPegAvA==}
     dev: true
 
-  /@types/semantic-release@17.2.4:
-    resolution: {integrity: sha512-Ud2GB2+0WgyBrKB7PbyZA+bud3QD0z3Iv6KPx6FfeMUNDekw3EWgZi3eLKXoeGDPBo+hev74NN1pEPMp0rL2vQ==}
+  /@types/semantic-release@20.0.0:
+    resolution: {integrity: sha512-ahOG2wQ0V3LdebXOf9PZwvsZzCEzbnmx5D1pN2nl1Lx2VIhS2X3ud2j4peq8gzRGfs8JbKttJr81sD6LWpCFxQ==}
     dependencies:
       '@types/node': 18.11.18
     dev: true
